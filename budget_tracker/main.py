@@ -20,15 +20,22 @@ def main():
         "category":"food",
         "date":"5/11"
         }
+    
+    expense_config_2 = {
+        "value":20,
+        "category":"leisure",
+        "date":"5/16",
+        "note":"TESTING"
+    }
 
     expense_a = exp_mod.Expense(expense_config)
-    print(expense_a.get_config())
+    expense_b = exp_mod.Expense(expense_config_2)
 
     storage_mod.save_expenses(expense_a)
-    print(storage_mod.load_expenses())
+    storage_mod.save_expenses(expense_b)
 
 
-    menu.run_menu()
+    #menu.run_menu()
 
 
 main()
