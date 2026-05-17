@@ -1,21 +1,34 @@
-import os
-import json
-os.system("cls")
+from models import expense as exp_mod
+from services import storage as storage_mod
+from ui import menu
+from utils.helpers import clear
+clear()
+
+#traffic control and logic
+
+#start the app:
+    #show the menu
+    #connect everything --> make everything flow well
+#do not:
+    #perform JSON handling
+    #perform analytics
+
 
 def main():
-    expenses = []
-    expense = {"cost":15, "category":"food"}
+    expense_config = {
+        "value":15,
+        "category":"food",
+        "date":"5/11"
+        }
 
-    expenses.append(expense)
+    expense_a = exp_mod.Expense(expense_config)
+    print(expense_a.get_config())
 
-    for expense in expenses:
-        print(expense)
+    storage_mod.save_expenses(expense_a)
+    print(storage_mod.load_expenses())
 
-    with open("expenses.json", "w") as file:
-        json.dump(expense, file)
 
-    with open("expenses.json", "r") as file:
-        expenses = json.load(file)
+    menu.run_menu()
 
 
 main()
